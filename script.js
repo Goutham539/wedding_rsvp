@@ -3,7 +3,7 @@
 // Configuration
 const CONFIG = {
   email: 'nerellagoutham5@gmail.com',
-  googleScriptUrl: 'https://script.google.com/macros/s/AKfycbwl0Afl1iWgNFZKf3LI0wsa1awDvYOQqLrLZSrpJGtaJ4tm4i2jrvBYu3gjtC2PG1cC/exec',  // Update this after redeployment
+  googleScriptUrl: 'https://script.google.com/macros/s/AKfycbxVNgPx5UKGujslzFW913v9ixD2LWn_pl3iSDRr-77tQNUfeDqRumX8RSu49oYNrx-q/exec',  // Update this after redeployment
   event: {
     title: 'Goutham & Supritha – Wedding',
     start: '2026-03-13T13:00:00',
