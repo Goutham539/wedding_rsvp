@@ -32,6 +32,8 @@ function doPost(e) {
       data.email || '',
       data.phone || '',
       data.guests || '',
+      data.arrivalDate || '',
+      data.arrivalTime || '',
       data.attendance || '',
       data.meal || '',
       data.allergies || '',
@@ -86,6 +88,8 @@ function createSheet(ss) {
     'Email',
     'Phone Number',
     'Number of Guests',
+    'Arrival Date',
+    'Arrival Time',
     'Attendance',
     'Meal Preference',
     'Allergies/Special Requests',
@@ -106,10 +110,12 @@ function createSheet(ss) {
   sheet.setColumnWidth(4, 220); // Email
   sheet.setColumnWidth(5, 130); // Phone
   sheet.setColumnWidth(6, 120); // Guests
-  sheet.setColumnWidth(7, 130); // Attendance
-  sheet.setColumnWidth(8, 130); // Meal
-  sheet.setColumnWidth(9, 250); // Allergies
-  sheet.setColumnWidth(10, 200); // Song
+  sheet.setColumnWidth(7, 120); // Arrival Date
+  sheet.setColumnWidth(8, 100); // Arrival Time
+  sheet.setColumnWidth(9, 130); // Attendance
+  sheet.setColumnWidth(10, 130); // Meal
+  sheet.setColumnWidth(11, 250); // Allergies
+  sheet.setColumnWidth(12, 200); // Song
   
   // Freeze header row
   sheet.setFrozenRows(1);
