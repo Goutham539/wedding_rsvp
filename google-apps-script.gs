@@ -34,7 +34,6 @@ function doPost(e) {
       data.guests || '',
       data.arrivalDate || '',
       data.attendance || '',
-      data.meal || '',
       data.allergies || ''
     ];
     
@@ -88,7 +87,6 @@ function createSheet(ss) {
     'Number of Guests',
     'Arrival Date',
     'Attendance',
-    'Meal Preference',
     'Fun Ideas'
   ];
   
@@ -108,8 +106,7 @@ function createSheet(ss) {
   sheet.setColumnWidth(6, 120); // Guests
   sheet.setColumnWidth(7, 120); // Arrival Date
   sheet.setColumnWidth(8, 130); // Attendance
-  sheet.setColumnWidth(9, 130); // Meal
-  sheet.setColumnWidth(10, 300); // Fun Ideas
+  sheet.setColumnWidth(9, 300); // Fun Ideas
   
   // Freeze header row
   sheet.setFrozenRows(1);
