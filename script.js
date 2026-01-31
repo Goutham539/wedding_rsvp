@@ -3,7 +3,7 @@
 // Configuration
 const CONFIG = {
   email: 'nerellagoutham5@gmail.com',
-  googleScriptUrl: 'https://script.google.com/macros/s/AKfycbxVNgPx5UKGujslzFW913v9ixD2LWn_pl3iSDRr-77tQNUfeDqRumX8RSu49oYNrx-q/exec',
+  googleScriptUrl: 'https://docs.google.com/spreadsheets/d/1KrLY0FcpydogVv7QBpq-iuL_yn4SCnV6cv1JOpRY9CE/edit',  // Update this after redeployment
   event: {
     title: 'Goutham & Supritha – Wedding',
     start: '2026-03-13T13:00:00',
@@ -134,27 +134,7 @@ function initializeFormSubmission() {
       // Reset form
       form.reset();
       
-      // Optional: Send email backup only if email is provided
-      if (data.email && data.email.trim() !== '') {
-        const subject = `Wedding RSVP – ${data.guestName || ''}`;
-        const bodyLines = [
-          `Name: ${data.guestName || ''}`,
-          `Email: ${data.email || ''}`,
-          `Phone: ${data.phone || ''}`,
-          `Number of Guests: ${data.guests || ''}`,
-          `Arrival Date: ${data.arrivalDate || ''}`,
-          `Attendance: ${data.attendance || ''}`,
-          `Fun Ideas: ${data.allergies || ''}`,
-          `Submitted: ${data.submittedAt}`
-        ];
-        
-        const mailto = `mailto:${encodeURIComponent(CONFIG.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-        
-        // Small delay before opening mailto
-        setTimeout(() => {
-          window.location.href = mailto;
-        }, 1000);
-      }
+      // Email backup removed - data only goes to Google Sheets
       
     } catch (error) {
       console.error('Error submitting RSVP:', error);
