@@ -334,6 +334,17 @@ select {
   padding-right: 40px;
 }
 
+select option {
+  background: #1a2942;
+  color: var(--paper);
+  padding: 8px;
+}
+
+select:focus option {
+  background: #0b1f3b;
+  color: var(--paper);
+}
+
 textarea {
   resize: vertical;
   min-height: 80px;
