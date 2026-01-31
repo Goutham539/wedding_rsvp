@@ -178,12 +178,16 @@ function initializeThemeToggle() {
   const toggle = document.getElementById('themeToggle');
   if (!toggle) return;
   
-  // Check for saved theme preference
-  const savedTheme = localStorage.getItem('weddingTheme');
+  // Check for saved theme preference, default to blue
+  const savedTheme = localStorage.getItem('weddingTheme') || 'blue';
   if (savedTheme === 'blue') {
     document.body.classList.add('theme-blue');
     toggle.textContent = 'Switch to Maroon & Gold ✨';
     toggle.setAttribute('aria-pressed', 'true');
+  } else {
+    document.body.classList.remove('theme-blue');
+    toggle.textContent = 'Switch to Royal Blue ✨';
+    toggle.setAttribute('aria-pressed', 'false');
   }
   
   toggle.addEventListener('click', () => {
