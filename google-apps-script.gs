@@ -60,17 +60,8 @@ function doGet(e) {
 }
 
 function getOrCreateSpreadsheet() {
-  const scriptProperties = PropertiesService.getScriptProperties();
-  let spreadsheetId = scriptProperties.getProperty('SPREADSHEET_ID');
-  
-  if (!spreadsheetId) {
-    // Create a new spreadsheet
-    const ss = SpreadsheetApp.create('Wedding RSVP Responses');
-    spreadsheetId = ss.getId();
-    scriptProperties.setProperty('SPREADSHEET_ID', spreadsheetId);
-    return ss;
-  }
-  
+  // Use your specific spreadsheet ID
+  const spreadsheetId = '1KrLY0FcpydogVv7QBpq-iuL_yn4SCnV6cv1JOpRY9CE';
   return SpreadsheetApp.openById(spreadsheetId);
 }
 
