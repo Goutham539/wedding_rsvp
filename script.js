@@ -136,7 +136,6 @@ function initializeFormSubmission() {
           `Number of Guests: ${data.guests || ''}`,
           `Arrival Date: ${data.arrivalDate || ''}`,
           `Attendance: ${data.attendance || ''}`,
-          `Meal Preference: ${data.meal || ''}`,
           `Fun Ideas: ${data.allergies || ''}`,
           `Submitted: ${data.submittedAt}`
         ];
