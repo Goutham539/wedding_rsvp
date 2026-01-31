@@ -3,7 +3,7 @@
 // Configuration
 const CONFIG = {
   email: 'nerellagoutham5@gmail.com',
-  googleScriptUrl: 'https://script.google.com/macros/s/AKfycbwMx0lzq_XrEB0C88PdrmhHxqaTcEC-xuKsTESzuw4f6g4pgJKmp2SOQJvdL6TqcZGd/exec',
+  googleScriptUrl: 'https://script.google.com/macros/s/AKfycbyA4teV1FLOzBndwIhxh4zjS03blRcbVotRut2RKGKi_1faf3tKZ2mSiw8UU15dMXOn/exec',
   event: {
     title: 'Goutham & Supritha – Wedding',
     start: '2026-03-13T13:00:00',
@@ -109,7 +109,10 @@ function initializeFormSubmission() {
     try {
       // Send to Google Sheets
       if (CONFIG.googleScriptUrl && CONFIG.googleScriptUrl !== 'YOUR_GOOGLE_SCRIPT_WEB_APP_URL_HERE') {
-        await fetch(CONFIG.googleScriptUrl, {
+        console.log('📤 Sending data to Google Sheets...', data);
+        console.log('🔗 URL:', CONFIG.googleScriptUrl);
+        
+        const response = await fetch(CONFIG.googleScriptUrl, {
           method: 'POST',
           mode: 'no-cors',
           headers: {
@@ -117,7 +120,12 @@ function initializeFormSubmission() {
           },
           body: JSON.stringify(data)
         });
-        console.log('✅ Data sent to Google Sheets');
+        
+        console.log('✅ Request sent to Google Sheets');
+        console.log('📊 Response type:', response.type);
+        
+        // Wait a bit to ensure data is written (since no-cors doesn't give us feedback)
+        await new Promise(resolve => setTimeout(resolve, 2000));
       }
       
       // Show success message
