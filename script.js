@@ -120,32 +120,36 @@ function initializeFormSubmission() {
         console.log('✅ Data sent to Google Sheets');
       }
       
-      // Prepare email backup
-      const subject = `Wedding RSVP – ${data.guestName || ''}`;
-      const bodyLines = [
-        `Name: ${data.guestName || ''}`,
-        `Email: ${data.email || ''}`,
-        `Phone: ${data.phone || ''}`,
-        `Number of Guests: ${data.guests || ''}`,
-        `Attendance: ${data.attendance || ''}`,
-        `Meal Preference: ${data.meal || ''}`,
-        `Allergies / Requests: ${data.allergies || ''}`,
-        `Song Request: ${data.song || ''}`,
-        `Submitted: ${data.submittedAt}`
-      ];
-      
-      const mailto = `mailto:${encodeURIComponent(CONFIG.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-      
       // Show success message
       showSuccessMessage('🎉 Thank you! Your RSVP has been submitted successfully.');
       
       // Reset form
       form.reset();
       
-      // Small delay before opening mailto
-      setTimeout(() => {
-        window.location.href = mailto;
-      }, 500);
+      // Optional: Send email backup only if email is provided
+      if (data.email && data.email.trim() !== '') {
+        const subject = `Wedding RSVP – ${data.guestName || ''}`;
+        const bodyLines = [
+          `Name: ${data.guestName || ''}`,
+          `Email: ${data.email || ''}`,
+          `Phone: ${data.phone || ''}`,
+          `Number of Guests: ${data.guests || ''}`,
+          `Arrival Date: ${data.arrivalDate || ''}`,
+          `Arrival Time: ${data.arrivalTime || ''}`,
+          `Attendance: ${data.attendance || ''}`,
+          `Meal Preference: ${data.meal || ''}`,
+          `Allergies / Requests: ${data.allergies || ''}`,
+          `Song Request: ${data.song || ''}`,
+          `Submitted: ${data.submittedAt}`
+        ];
+        
+        const mailto = `mailto:${encodeURIComponent(CONFIG.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+        
+        // Small delay before opening mailto
+        setTimeout(() => {
+          window.location.href = mailto;
+        }, 1000);
+      }
       
     } catch (error) {
       console.error('Error submitting RSVP:', error);
