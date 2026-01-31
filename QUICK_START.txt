@@ -1,0 +1,113 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║               WEDDING RSVP - QUICK SETUP GUIDE (UPDATED)                 ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+📁 PROJECT FILES:
+   ├── index.html              (Main HTML structure)
+   ├── styles.css              (All styling & animations)
+   ├── script.js               (All JavaScript logic)
+   ├── google-apps-script.gs   (Backend for Google Sheets)
+   └── deploy.sh               (Deployment helper)
+
+🎯 QUICK START (3 Main Steps):
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 1: SET UP GOOGLE SHEETS (5 minutes)                                │
+└─────────────────────────────────────────────────────────────────────────┘
+
+1. Open: https://script.google.com/
+2. Click "New Project"
+3. Copy contents of "google-apps-script.gs" file
+4. Click "Deploy" → "New deployment" → Web app
+5. Set "Who has access" to "Anyone"
+7. Copy the Web App URL (already configured in script.js)
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 2: DEPLOY TO GITHUB PAGES (3 minutes)                              │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Option A - Easy Way:
+  • Run: ./test.sh (to verify files)
+  • Run: ./deploy.sh (to deploy)
+  • Follow the prompts
+
+Option B - Manual Way:
+  1. Create repo at: https://github.com/new
+  2. Run these commands:
+     git init
+     git add index.html styles.css script.js .gitignore
+     git commit -m "Wedding RSVP website"
+     git branch -M main
+     git remote add origin https://github.com/YOUR_USERNAME/REPO_NAME.git
+     git push -u origin main
+  3. Enable GitHub Pages in repo Settings → Pages
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│ STEP 3: CUSTOMIZE YOUR SITE (2 minutes)                                 │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Edit these files:
+
+📄 script.js (Configuration):
+  • Line 4: Your email address
+  • Lines 5-11: Wedding date, time, venue
+
+📄 index.html (Content):
+  • Line 50: Couple names
+  • Lines 53-55: Date/time chips
+  • Lines 76-84: Venue details
+
+📄 styles.css (Optional - Colors/Animations):
+  • Lines 3-11: Color scheme
+  • Lines 400+: Animation settings
+
+
+📊 VIEWING RESPONSES:
+
+Your Google Sheet: https://drive.google.com/
+  → Look for "Wedding RSVP Responses"
+  → All form submissions appear automatically
+  → Download as Excel: File → Download → Microsoft Excel
+
+
+🌐 YOUR WEBSITE URL:
+
+https://YOUR_USERNAME.github.io/REPO_NAME/
+
+
+✨ FEATURES INCLUDED:
+
+✅ Clean, modular code (separate HTML, CSS, JS files)
+✅ Smooth animations (fade-in, hover effects, transitions)
+✅ Auto-saves to Google Sheets
+✅ Email backup (mailto)
+✅ Responsive design (mobile-friendly)
+✅ Theme toggle (2 color schemes with localStorage)
+✅ Print/PDF capability
+✅ Calendar download (.ics file)
+✅ Loading states and success messages
+✅ Form validation
+✅ Tracks: Name, Email, Phone, Guests, Attendance, Meal, Allergies, Song
+
+
+🔧 TROUBLESHOOTING:
+
+Problem: Form not saving to Google Sheets
+  → Check Web App URL in HTML is correct
+  → Make sure Apps Script is deployed as "Anyone"
+  → Wait 1-2 minutes after deployment
+
+Problem: GitHub Pages not loading
+  → Wait 5-10 minutes after enabling Pages
+  → Check repository is PUBLIC
+  → Verify correct file path in URL
+
+Problem: Need to update the site
+  → Edit files locally
+  → Run: git add . && git commit -m "Updates" && git push
+  → Changes appear in 1-2 minutes
+
+
+📧 SUPPORT: nerellagoutham5@gmail.com
+
+═══════════════════════════════════════════════════════════════════════════

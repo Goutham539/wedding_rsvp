@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wedding RSVP – Goutham & Supritha</title>
+  <meta name="description" content="Join us for our wedding celebration! RSVP here." />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>💍</text></svg>">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Navigation Bar -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand" aria-label="Wedding brand">
+        <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="var(--gold)" stroke-width="2">
+            <circle cx="32" cy="32" r="20"/>
+            <path d="M32 12c4 6 4 12 0 20c-4-8-4-14 0-20z"/>
+            <path d="M12 32c6-4 12-4 20 0c-8 4-14 4-20 0z"/>
+            <path d="M52 32c-6-4-12-4-20 0c8 4 14 4 20 0z"/>
+          </g>
+        </svg>
+        <span>Wedding RSVP</span>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+        Switch to Royal Blue ✨
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="frame">
+      <!-- Header Section -->
+      <header class="hero" role="banner">
+        <div class="lotus-divider" aria-hidden="true">
+          <svg class="lotus" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="var(--gold)" stroke-width="2.2">
+              <path d="M100 10 C90 20, 85 30, 100 42 C115 30, 110 20, 100 10 Z" fill="var(--gold)" fill-opacity="0.2"/>
+              <path d="M100 14 C92 22, 90 28, 100 36 C110 28, 108 22, 100 14 Z"/>
+              <path d="M80 18 C72 24, 70 32, 84 40 C88 30, 86 24, 80 18 Z"/>
+              <path d="M120 18 C128 24, 130 32, 116 40 C112 30, 114 24, 120 18 Z"/>
+              <path d="M60 24 C52 28, 50 36, 70 44 C72 34, 68 28, 60 24 Z"/>
+              <path d="M140 24 C148 28, 150 36, 130 44 C128 34, 132 28, 140 24 Z"/>
+            </g>
+          </svg>
+        </div>
+        
+        <p class="blessing">With the blessings of our families</p>
+        <h1 class="couple-names">Goutham <span class="and">&</span> Supritha</h1>
+        
+        <div class="meta" aria-label="Date and venue">
+          <span class="chip">Friday, 13 March 2026</span>
+          <span class="chip">Ceremony 9:10 PM</span>
+          <span class="chip">New England Sai Baba Temple, Groton</span>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main role="main">
+        <!-- Wedding Details Section -->
+        <h2 class="section-title">Wedding Details</h2>
+        <div class="cards" aria-label="Wedding details cards">
+          <article class="card" aria-labelledby="whenTitle">
+            <h3 id="whenTitle">When</h3>
+            <p><strong>Ceremony:</strong> Friday, 13 March 2026 at 9:10 PM</p>
+            <p class="calendar-chip">
+              📅 <a id="icsLink" href="#">Add to Calendar (ICS)</a>
+            </p>
+          </article>
+          
+          <article class="card" aria-labelledby="whereTitle">
+            <h3 id="whereTitle">Where</h3>
+            <p><strong>Venue:</strong> New England Sai Baba Temple</p>
+            <p><strong>Address:</strong> 99 Shirdi Way, Groton, Massachusetts, 01450</p>
+            <p>
+              <a target="_blank" rel="noopener" 
+                 href="https://www.google.com/maps/place/New+England+Shirdi+Sai+Temple/data=!4m7!3m6!1s0x89e395910e485e2d:0x42dd2ac6b4302606!8m2!3d42.5716073!4d-71.5089656!16s%2Fg%2F11dztsh53v!19sChIJLV5IDpGV44kRBiYwtMYq3UI?authuser=0&hl=en&rclk=1" 
+                 style="color:var(--accent)">
+                Open in Google Maps ↗
+              </a>
+            </p>
+          </article>
+          
+          <article class="card" aria-labelledby="dressTitle">
+            <h3 id="dressTitle">Dress Code</h3>
+            <p>Traditional Indian attire or festive formal.</p>
+            <p>It's official, we're tying the knot! Join us for a day of love, laughter, and unlimited food. ✨</p>
+          </article>
+        </div>
+
+        <!-- Decorative Divider -->
+        <div class="divider">
+          <svg class="mandala" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="var(--gold)" stroke-width="1.4" opacity="0.9">
+              <circle cx="20" cy="20" r="10"/>
+              <circle cx="180" cy="20" r="10"/>
+              <path d="M40 20 h120"/>
+              <path d="M100 4 C90 14, 90 26, 100 36 C110 26, 110 14, 100 4 Z"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- RSVP Form Section -->
+        <h2 class="section-title">Kindly RSVP</h2>
+        <form id="rsvpForm" aria-describedby="privacyNote">
+          <div class="row">
+            <div class="form-group">
+              <label for="guestName">Full Name *</label>
+              <input id="guestName" name="guestName" required placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input id="email" type="email" name="email" required placeholder="you@example.com" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" placeholder="+1 234 567 8901" />
+            </div>
+            <div class="form-group">
+              <label for="guests">Number of Guests (including you) *</label>
+              <input id="guests" type="number" min="1" max="10" name="guests" required value="1" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="attendance">Will you attend? *</label>
+              <select id="attendance" name="attendance" required>
+                <option value="" disabled selected>Select an option</option>
+                <option>Yes, joyfully</option>
+                <option>No, with regrets</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="meal">Meal Preference</label>
+              <select id="meal" name="meal">
+                <option value="">No preference</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>Non-Diary</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="allergies">Fun Ideas to make the event more memorable</label>
+            <textarea id="allergies" name="allergies" rows="3" 
+                      placeholder="Let us know about any fun activities or events you would like to have"></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submitBtn">Send RSVP 💌</button>
+            <button type="button" class="secondary" id="savePdf">Print / Save as PDF</button>
+          </div>
+          
+          <p id="privacyNote" class="footer-note">
+            We only use your RSVP details for wedding planning and will not share them.
+          </p>
+        </form>
+
+        <div class="footer-note" style="margin-top:12px">
+          Questions? Email us at 
+          <a id="contactEmail" href="mailto:nerellagoutham5@gmail.com" style="color:var(--accent)">
+            nerellagoutham5@gmail.com
+          </a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
