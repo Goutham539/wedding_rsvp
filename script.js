@@ -194,15 +194,25 @@ function initializeFormSubmission() {
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
     
+    // Collect form data but exclude checkboxes (handle separately)
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
+    const data = {};
     
-    // Handle multiple checkboxes for events - must be done AFTER FormData
+    // Get all form entries except the checkbox group
+    for (let [key, value] of formData.entries()) {
+      if (key !== 'eventsAttending') {
+        data[key] = value;
+      }
+    }
+    
+    // Handle multiple checkboxes for events separately
+    const eventCheckboxes = form.querySelectorAll('input[name="eventsAttending"]:checked');
     const selectedEvents = Array.from(eventCheckboxes).map(cb => cb.value);
     data.eventsAttending = selectedEvents.length > 0 ? selectedEvents.join(', ') : 'None';
     
     console.log('📋 Form data before sending:', data);
     console.log('✅ Events selected:', data.eventsAttending);
+    console.log('📝 Fun Ideas:', data.allergies);
     
     // Add timestamp
     data.timestamp = new Date().toISOString();
