@@ -112,8 +112,43 @@
 
         <h2 class="section-title">Order of Events</h2>
         <div class="events-timeline" id="eventsTimeline">
-          <!-- Events will be added here -->
-          <p style="text-align: center; opacity: 0.8; font-style: italic;">Event schedule coming soon...</p>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="event-date">March 12, 2026</div>
+              <div class="event-time">9:30 AM</div>
+              <div class="event-name">Haldi</div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="event-date">March 13, 2026</div>
+              <div class="event-time">9:30 AM</div>
+              <div class="event-name">Upanayanam</div>
+              <div class="event-description">Followed by lunch</div>
+            </div>
+          </div>
+          
+          <div class="timeline-item highlight">
+            <div class="timeline-marker highlight"></div>
+            <div class="timeline-content">
+              <div class="event-date">March 13, 2026</div>
+              <div class="event-time">9:10 PM</div>
+              <div class="event-name">Marriage Ceremony</div>
+              <div class="event-description">Followed by dinner</div>
+            </div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <div class="event-date">March 14, 2026</div>
+              <div class="event-time">10:00 AM</div>
+              <div class="event-name">Satyanarayana Swami Vratam</div>
+            </div>
+          </div>
         </div>
 
         <!-- Decorative Divider -->
@@ -166,6 +201,34 @@
                 <option>No, with regrets</option>
               </select>
             </div>
+          </div>
+
+          <div class="form-group">
+            <label>Events you are planning to attend?</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="eventsAttending" value="Haldi (March 12, 9:30 AM)">
+                <span class="checkbox-text">Haldi - March 12, 9:30 AM</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="eventsAttending" value="Upanayanam (March 13, 9:30 AM)">
+                <span class="checkbox-text">Upanayanam - March 13, 9:30 AM</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="eventsAttending" value="Marriage Ceremony (March 13, 9:10 PM)" checked>
+                <span class="checkbox-text">Marriage Ceremony - March 13, 9:10 PM</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="eventsAttending" value="Satyanarayana Swami Vratam (March 14, 10:00 AM)">
+                <span class="checkbox-text">Satyanarayana Swami Vratam - March 14, 10:00 AM</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <button type="button" class="secondary calendar-btn" id="addToCalendarBtn">
+              📅 Add Selected Events to Calendar
+            </button>
           </div>
 
           <div class="form-group">
