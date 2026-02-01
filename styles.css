@@ -517,6 +517,7 @@ button.secondary {
 
 /* Deity Images for Traditional Temple Theme */
 .deity-images {
+  display: none;
   position: absolute;
   top: 10px;
   left: 0;
@@ -524,6 +525,10 @@ button.secondary {
   height: auto;
   pointer-events: none;
   z-index: 1;
+}
+
+.theme-traditional .deity-images {
+  display: block;
 }
 
 .deity-image {
