@@ -1,9 +1,41 @@
 // Wedding RSVP - Main JavaScript
 
+// Event details for calendar export
+const EVENTS = {
+  'Haldi (March 12, 9:30 AM)': {
+    title: 'Haldi Ceremony',
+    start: '2026-03-12T09:30:00',
+    end: '2026-03-12T12:00:00',
+    location: 'New England Sai Baba Temple, 99 Shirdi Way, Groton, Massachusetts',
+    description: 'Haldi ceremony for Goutham & Supritha\'s wedding'
+  },
+  'Upanayanam (March 13, 9:30 AM)': {
+    title: 'Upanayanam',
+    start: '2026-03-13T09:30:00',
+    end: '2026-03-13T14:00:00',
+    location: 'New England Sai Baba Temple, 99 Shirdi Way, Groton, Massachusetts',
+    description: 'Upanayanam ceremony followed by lunch'
+  },
+  'Marriage Ceremony (March 13, 9:10 PM)': {
+    title: 'Wedding Ceremony - Goutham & Supritha',
+    start: '2026-03-13T21:10:00',
+    end: '2026-03-14T00:00:00',
+    location: 'New England Sai Baba Temple, 99 Shirdi Way, Groton, Massachusetts',
+    description: 'Wedding ceremony followed by dinner'
+  },
+  'Satyanarayana Swami Vratam (March 14, 10:00 AM)': {
+    title: 'Satyanarayana Swami Vratam',
+    start: '2026-03-14T10:00:00',
+    end: '2026-03-14T13:00:00',
+    location: 'New England Sai Baba Temple, 99 Shirdi Way, Groton, Massachusetts',
+    description: 'Satyanarayana Swami Vratam ceremony'
+  }
+};
+
 // Configuration
 const CONFIG = {
   email: 'nerellagoutham5@gmail.com',
-  googleScriptUrl: 'https://script.google.com/macros/s/AKfycbxVNgPx5UKGujslzFW913v9ixD2LWn_pl3iSDRr-77tQNUfeDqRumX8RSu49oYNrx-q/exec',  // Update this after redeployment
+  googleScriptUrl: 'https://script.google.com/macros/s/AKfycbxVNgPx5UKGujslzFW913v9ixD2LWn_pl3iSDRr-77tQNUfeDqRumX8RSu49oYNrx-q/exec',
   event: {
     title: 'Goutham & Supritha – Wedding',
     start: '2026-03-13T13:00:00',
@@ -42,6 +74,8 @@ function buildICS(ev) {
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
     'PRODID:-//Wedding RSVP//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
     'BEGIN:VEVENT',
     `UID:${uid}`,
     `DTSTAMP:${toICSDate(new Date().toISOString())}`,
@@ -50,10 +84,61 @@ function buildICS(ev) {
     `SUMMARY:${ev.title}`,
     `LOCATION:${ev.location}`,
     `DESCRIPTION:${ev.description}`,
+    'STATUS:CONFIRMED',
+    'BEGIN:VALARM',
+    'TRIGGER:-PT24H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Reminder: ' + ev.title,
+    'END:VALARM',
     'END:VEVENT',
     'END:VCALENDAR'
-  ].join('\r\n');
-  return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+  ];
+  return ics.join('\r\n');
+}
+
+function buildMultiEventICS(events) {
+  const icsLines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Wedding RSVP//EN',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH'
+  ];
+  
+  events.forEach(ev => {
+    const uid = Math.random().toString(36).slice(2) + '@wedding.local';
+    icsLines.push(
+      'BEGIN:VEVENT',
+      `UID:${uid}`,
+      `DTSTAMP:${toICSDate(new Date().toISOString())}`,
+      `DTSTART:${toICSDate(ev.start)}`,
+      `DTEND:${toICSDate(ev.end)}`,
+      `SUMMARY:${ev.title}`,
+      `LOCATION:${ev.location}`,
+      `DESCRIPTION:${ev.description}`,
+      'STATUS:CONFIRMED',
+      'BEGIN:VALARM',
+      'TRIGGER:-PT24H',
+      'ACTION:DISPLAY',
+      'DESCRIPTION:Reminder: ' + ev.title,
+      'END:VALARM',
+      'END:VEVENT'
+    );
+  });
+  
+  icsLines.push('END:VCALENDAR');
+  return icsLines.join('\r\n');
+}
+
+function downloadICS(icsContent, filename) {
+  const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
 }
 
 // Initialize on DOM ready
@@ -63,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeFormSubmission();
   initializePDFExport();
   initializeThemeToggle();
+  initializeEventCalendarExport();
   addFormAnimations();
 });
 
@@ -101,6 +187,11 @@ function initializeFormSubmission() {
     
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+    
+    // Handle multiple checkboxes for events
+    const eventCheckboxes = form.querySelectorAll('input[name="eventsAttending"]:checked');
+    const selectedEvents = Array.from(eventCheckboxes).map(cb => cb.value);
+    data.eventsAttending = selectedEvents.join(', ');
     
     // Add timestamp
     data.timestamp = new Date().toISOString();
@@ -223,3 +314,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// Event calendar export functionality
+function initializeEventCalendarExport() {
+  const calendarBtn = document.getElementById('addToCalendarBtn');
+  if (!calendarBtn) return;
+  
+  calendarBtn.addEventListener('click', function() {
+    const checkedBoxes = document.querySelectorAll('input[name="eventsAttending"]:checked');
+    
+    if (checkedBoxes.length === 0) {
+      showSuccessMessage('⚠️ Please select at least one event first');
+      return;
+    }
+    
+    const selectedEvents = Array.from(checkedBoxes)
+      .map(cb => EVENTS[cb.value])
+      .filter(Boolean);
+    
+    if (selectedEvents.length === 0) {
+      showSuccessMessage('⚠️ No valid events selected');
+      return;
+    }
+    
+    // Generate ICS file with all selected events
+    const icsContent = buildMultiEventICS(selectedEvents);
+    const filename = selectedEvents.length === 1 
+      ? `${selectedEvents[0].title.replace(/\s+/g, '_')}.ics`
+      : 'Wedding_Events.ics';
+    
+    downloadICS(icsContent, filename);
+    showSuccessMessage(`✅ Calendar file downloaded with ${selectedEvents.length} event(s)!`);
+  });
+}
