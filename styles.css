@@ -612,6 +612,223 @@ button.loading::after {
   to { transform: rotate(360deg); }
 }
 
+/* Events Timeline Styles */
+.events-timeline {
+  position: relative;
+  margin: 3rem 0;
+  padding-left: 3rem;
+}
+
+.events-timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    transparent,
+    var(--gold) 10%,
+    var(--gold) 90%,
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.timeline-item:nth-child(4) { animation-delay: 0.4s; }
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -44px;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(30, 26, 18, 0.9);
+  border: 3px solid var(--gold);
+  box-shadow: 0 0 0 4px rgba(30, 26, 18, 0.5),
+              0 0 15px rgba(212, 175, 55, 0.6);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.timeline-marker.highlight {
+  width: 24px;
+  height: 24px;
+  left: -46px;
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3),
+              0 0 20px rgba(212, 175, 55, 0.8),
+              inset 0 0 10px rgba(255, 255, 255, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3),
+                0 0 20px rgba(212, 175, 55, 0.8),
+                inset 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  50% { 
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.2),
+                0 0 25px rgba(212, 175, 55, 1),
+                inset 0 0 15px rgba(255, 255, 255, 0.7);
+  }
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 4px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 12px 6px 0;
+  border-color: transparent rgba(212, 175, 55, 0.3) transparent transparent;
+}
+
+.timeline-item:hover .timeline-content {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--gold);
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.timeline-item:hover .timeline-marker {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 6px rgba(30, 26, 18, 0.5),
+              0 0 20px rgba(212, 175, 55, 0.8);
+}
+
+.timeline-item.highlight .timeline-content {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+  border: 2px solid var(--gold);
+}
+
+.event-date {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.event-time {
+  font-size: 0.95rem;
+  color: rgba(248, 245, 240, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.event-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--paper);
+  margin-bottom: 0.5rem;
+}
+
+.event-description {
+  font-size: 0.9rem;
+  color: rgba(248, 245, 240, 0.7);
+  font-style: italic;
+}
+
+/* Checkbox group styling */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.checkbox-label:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--gold);
+  transform: translateX(3px);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--gold);
+  flex-shrink: 0;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-text {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.checkbox-text {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--paper);
+  transition: all 0.3s ease;
+}
+
+.calendar-btn {
+  width: 100%;
+  margin-top: 0;
+}
+
+/* Multi-select dropdown styling - keeping for backwards compatibility */
+select[multiple] {
+  padding: 0.5rem;
+  min-height: 120px;
+}
+
+select[multiple] option {
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+select[multiple] option:checked {
+  background: var(--gold) !important;
+  color: #1e1a12 !important;
+  font-weight: 600;
+}
+
 /* Print Styles */
 @media print {
   .topbar, .actions, button { display: none; }
