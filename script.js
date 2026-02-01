@@ -205,8 +205,7 @@ function initializeFormSubmission() {
       }
     }
     
-    // Handle multiple checkboxes for events separately
-    const eventCheckboxes = form.querySelectorAll('input[name="eventsAttending"]:checked');
+    // Use the already declared eventCheckboxes from validation above
     const selectedEvents = Array.from(eventCheckboxes).map(cb => cb.value);
     data.eventsAttending = selectedEvents.length > 0 ? selectedEvents.join(', ') : 'None';
     
