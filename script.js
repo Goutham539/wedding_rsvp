@@ -179,6 +179,15 @@ function initializeFormSubmission() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    // Validate attendance and events selection
+    const attendanceValue = form.querySelector('#attendance').value;
+    const eventCheckboxes = form.querySelectorAll('input[name="eventsAttending"]:checked');
+    
+    if (attendanceValue === 'Yes, joyfully' && eventCheckboxes.length === 0) {
+      showSuccessMessage('⚠️ Please select at least one event you plan to attend');
+      return;
+    }
+    
     // Disable submit button and show loading
     submitBtn.disabled = true;
     submitBtn.classList.add('loading');
@@ -188,10 +197,12 @@ function initializeFormSubmission() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     
-    // Handle multiple checkboxes for events
-    const eventCheckboxes = form.querySelectorAll('input[name="eventsAttending"]:checked');
+    // Handle multiple checkboxes for events - must be done AFTER FormData
     const selectedEvents = Array.from(eventCheckboxes).map(cb => cb.value);
-    data.eventsAttending = selectedEvents.join(', ');
+    data.eventsAttending = selectedEvents.length > 0 ? selectedEvents.join(', ') : 'None';
+    
+    console.log('📋 Form data before sending:', data);
+    console.log('✅ Events selected:', data.eventsAttending);
     
     // Add timestamp
     data.timestamp = new Date().toISOString();
