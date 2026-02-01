@@ -16,11 +16,32 @@
  */
 
 function doPost(e) {
+  const ss = SpreadsheetApp.openById('1KrLY0FcpydogVv7QBpq-iuL_yn4SCnV6cv1JOpRY9CE');
+  const sheet = ss.getSheetByName('Sheet1') || ss.getSheets()[0];
+  
+  // Add headers if this is the first row
+  if (sheet.getLastRow() === 0) {
+    const headers = [
+      'Timestamp',
+      'Submitted At',
+      'Full Name',
+      'Email',
+      'Phone Number',
+      'Number of Guests',
+      'Arrival Date',
+      'Attendance',
+      'Events Attending',
+      'Fun Ideas'
+    ];
+    const headerRange = sheet.getRange(1, 1, 1, headers.length);
+    headerRange.setValues([headers]);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#d4af37');
+    headerRange.setFontColor('#1e1a12');
+    sheet.setFrozenRows(1);
+  }
+  
   try {
-    // Get the active spreadsheet or create a new one
-    const ss = getOrCreateSpreadsheet();
-    const sheet = ss.getSheetByName('RSVP Responses') || createSheet(ss);
-    
     // Parse the incoming data
     const data = JSON.parse(e.postData.contents);
     
@@ -34,6 +55,7 @@ function doPost(e) {
       data.guests || '',
       data.arrivalDate || '',
       data.attendance || '',
+      data.eventsAttending || '',
       data.allergies || ''
     ];
     
@@ -46,6 +68,9 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
       
   } catch (error) {
+    // If there's an error, write it to the sheet
+    sheet.appendRow(['ERROR', new Date().toString(), error.toString(), '', '', '', '', '', '', '']);
+    
     // Return error response
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'error', message: error.toString() }))
@@ -78,6 +103,7 @@ function createSheet(ss) {
     'Number of Guests',
     'Arrival Date',
     'Attendance',
+    'Events Attending',
     'Fun Ideas'
   ];
   
@@ -97,7 +123,8 @@ function createSheet(ss) {
   sheet.setColumnWidth(6, 120); // Guests
   sheet.setColumnWidth(7, 120); // Arrival Date
   sheet.setColumnWidth(8, 130); // Attendance
-  sheet.setColumnWidth(9, 300); // Fun Ideas
+  sheet.setColumnWidth(9, 350); // Events Attending
+  sheet.setColumnWidth(10, 300); // Fun Ideas
   
   // Freeze header row
   sheet.setFrozenRows(1);
@@ -105,10 +132,24 @@ function createSheet(ss) {
   return sheet;
 }
 
-// Test function - run this to create the spreadsheet manually if needed
-function setupSpreadsheet() {
-  const ss = getOrCreateSpreadsheet();
-  const sheet = ss.getSheetByName('RSVP Responses') || createSheet(ss);
-  Logger.log('Spreadsheet URL: ' + ss.getUrl());
-  return ss.getUrl();
+// Test function - run this to test the spreadsheet connection
+function testSpreadsheet() {
+  try {
+    Logger.log('Testing spreadsheet connection...');
+    const ss = SpreadsheetApp.openById('1KrLY0FcpydogVv7QBpq-iuL_yn4SCnV6cv1JOpRY9CE');
+    Logger.log('Spreadsheet opened: ' + ss.getName());
+    
+    let sheet = ss.getSheetByName('Sheet1') || ss.getSheets()[0];
+    Logger.log('Sheet name: ' + sheet.getName());
+    
+    // Test write
+    const testRow = ['TEST', new Date().toString(), 'Test Name', 'test@email.com', '1234567890', '2', '2026-03-13', 'Yes', 'Test message'];
+    sheet.appendRow(testRow);
+    Logger.log('Test row appended successfully!');
+    
+    return 'SUCCESS - Check your spreadsheet';
+  } catch (error) {
+    Logger.log('ERROR: ' + error.toString());
+    return 'ERROR: ' + error.toString();
+  }
 }
