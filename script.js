@@ -276,23 +276,13 @@ function initializeThemeToggle() {
   
   // Check for saved theme preference, default to blue
   const savedTheme = localStorage.getItem('weddingTheme') || 'blue';
-  if (savedTheme === 'blue') {
-    document.body.classList.add('theme-blue');
-    toggle.textContent = 'Switch to Maroon & Gold ✨';
-    toggle.setAttribute('aria-pressed', 'true');
-  } else {
-    document.body.classList.remove('theme-blue');
-    toggle.textContent = 'Switch to Royal Blue ✨';
-    toggle.setAttribute('aria-pressed', 'false');
-  }
+  document.body.className = `theme-${savedTheme}`;
+  toggle.value = savedTheme;
   
-  toggle.addEventListener('click', () => {
-    const isBlue = document.body.classList.toggle('theme-blue');
-    toggle.setAttribute('aria-pressed', isBlue);
-    toggle.textContent = isBlue ? 'Switch to Maroon & Gold ✨' : 'Switch to Royal Blue ✨';
-    
-    // Save preference
-    localStorage.setItem('weddingTheme', isBlue ? 'blue' : 'maroon');
+  toggle.addEventListener('change', () => {
+    const selectedTheme = toggle.value;
+    document.body.className = `theme-${selectedTheme}`;
+    localStorage.setItem('weddingTheme', selectedTheme);
   });
 }
 
