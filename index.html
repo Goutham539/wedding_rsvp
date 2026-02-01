@@ -32,16 +32,29 @@
         </svg>
         <span>Wedding RSVP</span>
       </div>
-      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="true">
-        Switch to Maroon & Gold ✨
-      </button>
+      <select class="theme-toggle" id="themeToggle" aria-label="Select theme">
+        <option value="blue">Royal Blue ✨</option>
+        <option value="maroon">Maroon & Gold ✨</option>
+        <option value="traditional">Traditional Temple 🕉️</option>
+      </select>
     </div>
   </div>
 
   <div class="container">
     <div class="frame">
+      
       <!-- Header Section -->
       <header class="hero" role="banner">
+        <!-- Deity Images -->
+        <div class="deity-images">
+          <div class="deity-image left">
+            <img src="ganesha.png" alt="Lord Ganesha">
+          </div>
+          <div class="deity-image right">
+            <img src="sitaram.png" alt="Sita Ram">
+          </div>
+        </div>
+        
         <div class="lotus-divider" aria-hidden="true">
           <svg class="lotus" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
             <g fill="none" stroke="var(--gold)" stroke-width="2.2">
@@ -147,6 +160,7 @@
               <div class="event-date">March 14, 2026</div>
               <div class="event-time">10:00 AM</div>
               <div class="event-name">Satyanarayana Swami Vratam</div>
+              <div class="event-description">Followed by lunch</div>
             </div>
           </div>
         </div>
