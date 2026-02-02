@@ -2,13 +2,6 @@
 
 // Event details for calendar export
 const EVENTS = {
-  'Haldi (March 12, 9:30 AM)': {
-    title: 'Haldi Ceremony',
-    start: '2026-03-12T09:30:00',
-    end: '2026-03-12T12:00:00',
-    location: 'New England Sai Baba Temple, 99 Shirdi Way, Groton, Massachusetts',
-    description: 'Haldi ceremony for Goutham & Supritha\'s wedding'
-  },
   'Upanayanam (March 13, 9:30 AM)': {
     title: 'Upanayanam',
     start: '2026-03-13T09:30:00',
