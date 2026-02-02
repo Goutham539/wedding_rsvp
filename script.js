@@ -2,6 +2,13 @@
 
 // Event details for calendar export
 const EVENTS = {
+  'Sangeet (March 12, 6:00 PM)': {
+    title: 'Sangeet - Goutham & Supritha',
+    start: '2026-03-12T18:00:00',
+    end: '2026-03-12T22:00:00',
+    location: 'New England Sai Baba Temple, 99 Shirdi Way, Groton, Massachusetts',
+    description: 'Sangeet ceremony with music, dance, and dinner'
+  },
   'Upanayanam (March 13, 9:30 AM)': {
     title: 'Upanayanam',
     start: '2026-03-13T09:30:00',
