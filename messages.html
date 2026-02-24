@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goutham & Supritha - Our Wedding Journey</title>
+    <title>Guestbook - Goutham & Supritha Wedding</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>💑</text></svg>">
     <link rel="stylesheet" href="wedding-site-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="page-transition">
     <!-- Floating particles for Ghibli effect -->
     <div class="particles" id="particles"></div>
 
@@ -37,79 +37,56 @@
                 </div>
             </a>
             <ul class="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="events.html">Events</a></li>
                 <li><a href="registry.html">Registry</a></li>
                 <li><a href="photos.html">Gallery</a></li>
-                <li><a href="messages.html">Guestbook</a></li>
+                <li><a href="messages.html" class="active">Guestbook</a></li>
                 <li><a href="family-events.html" class="rsvp-btn">RSVP</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title fade-in">Goutham & Supritha</h1>
-            <p class="hero-subtitle fade-in-delay">Join us as we begin our forever</p>
-            <div class="hero-date fade-in-delay-2">Save the Date: March 13, 2026</div>
-            <div class="hero-buttons fade-in-delay-3">
-                <a href="events.html" class="cta-button primary">View Events</a>
-                <a href="family-events.html" class="cta-button secondary">RSVP Now</a>
-            </div>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-overlay"></div>
+        <div class="page-header-content">
+            <h1 class="page-title fade-in">Guestbook</h1>
+            <p class="page-subtitle fade-in-delay">Leave your blessings and wishes for us</p>
         </div>
     </section>
 
-    <!-- Welcome Section -->
-    <section class="welcome-section">
+    <!-- Messages/Guestbook Section -->
+    <section class="messages-section">
         <div class="container">
-            <h2 class="section-title">Welcome to Our Wedding Website</h2>
-            <p class="section-subtitle">We're so excited to celebrate with you!</p>
+            <h2 class="section-title">Messages & Wishes</h2>
+            <p class="section-subtitle">We cherish every word from our loved ones</p>
             
-            <div class="quick-links-grid">
-                <a href="events.html" class="quick-link-card">
-                    <div class="quick-link-icon">📅</div>
-                    <h3>Events Timeline</h3>
-                    <p>View all wedding events and their locations</p>
-                    <span class="quick-link-arrow">→</span>
-                </a>
+            <div class="messages-container">
+                <!-- Message Form -->
+                <div class="message-form-container">
+                    <h3>Send Your Wishes</h3>
+                    <form id="messageForm" class="message-form">
+                        <div class="form-group">
+                            <input type="text" id="guestName" placeholder="Your Name *" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="guestEmail" placeholder="Your Email *" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="guestMessage" placeholder="Your Message & Wishes *" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Wishes</button>
+                    </form>
+                    <div id="formResponse" class="form-response"></div>
+                </div>
 
-                <a href="registry.html" class="quick-link-card">
-                    <div class="quick-link-icon">🎁</div>
-                    <h3>Gift Registry</h3>
-                    <p>Explore our gift registry options</p>
-                    <span class="quick-link-arrow">→</span>
-                </a>
-
-                <a href="photos.html" class="quick-link-card">
-                    <div class="quick-link-icon">📸</div>
-                    <h3>Photo Gallery</h3>
-                    <p>View our journey together</p>
-                    <span class="quick-link-arrow">→</span>
-                </a>
-
-                <a href="messages.html" class="quick-link-card">
-                    <div class="quick-link-icon">💌</div>
-                    <h3>Guestbook</h3>
-                    <p>Leave your wishes and blessings</p>
-                    <span class="quick-link-arrow">→</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Story Highlight Section -->
-    <section class="story-highlight-section">
-        <div class="container">
-            <h2 class="section-title">Our Story</h2>
-            <p class="section-subtitle">A journey of love, laughter, and forever</p>
-            
-            <div class="story-content">
-                <div class="story-text">
-                    <p>From the moment we met, we knew our story was something special. Through every adventure, every challenge, and every moment in between, our love has only grown stronger.</p>
-                    <p>Now, we're ready to begin the greatest adventure of all - spending forever together, surrounded by the love and support of our cherished family and friends.</p>
-                    <p>We can't wait to celebrate this special milestone with all of you!</p>
+                <!-- Messages Display -->
+                <div class="messages-display">
+                    <h3>Wishes from Loved Ones</h3>
+                    <div id="messagesList" class="messages-list">
+                        <div class="loading">Loading messages...</div>
+                    </div>
                 </div>
             </div>
         </div>

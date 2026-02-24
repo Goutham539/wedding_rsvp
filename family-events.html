@@ -21,7 +21,7 @@
   <!-- Top Navigation Bar -->
   <div class="topbar">
     <div class="container topbar-inner">
-      <div class="brand" aria-label="Wedding brand">
+      <a href="index.html" class="brand" aria-label="Wedding brand" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
         <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
           <g fill="none" stroke="var(--gold)" stroke-width="2">
             <circle cx="32" cy="32" r="20"/>
@@ -31,12 +31,15 @@
           </g>
         </svg>
         <span>Wedding RSVP</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 1.5rem;">
+        <a href="index.html" class="back-to-home-btn" style="padding: 0.5rem 1.5rem; background: var(--gold); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;">← Back to Home</a>
+        <select class="theme-toggle" id="themeToggle" aria-label="Select theme">
+          <option value="blue">Royal Blue ✨</option>
+          <option value="maroon">Maroon & Gold ✨</option>
+          <option value="traditional">Traditional Temple 🕉️</option>
+        </select>
       </div>
-      <select class="theme-toggle" id="themeToggle" aria-label="Select theme">
-        <option value="blue">Royal Blue ✨</option>
-        <option value="maroon">Maroon & Gold ✨</option>
-        <option value="traditional">Traditional Temple 🕉️</option>
-      </select>
     </div>
   </div>
 
@@ -267,6 +270,10 @@
           <a id="contactEmail" href="mailto:nerellagoutham5@gmail.com" style="color:var(--accent)">
             nerellagoutham5@gmail.com
           </a>
+          <br><br>
+          <a href="index.html" style="display: inline-block; padding: 0.8rem 2rem; background: var(--gold); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; margin-top: 1rem;">
+            ← Return to Wedding Website
+          </a>
         </div>
       </main>
     </div>
@@ -274,5 +281,7 @@
 
   <!-- JavaScript -->
   <script src="script.js"></script>
+</body>
+</html>
 </body>
 </html>

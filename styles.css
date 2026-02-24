@@ -515,6 +515,13 @@ button.secondary {
   transform: scale(1.05);
 }
 
+/* Back to Home Button */
+.back-to-home-btn:hover {
+  background: var(--accent) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
 /* Deity Images for Traditional Temple Theme */
 .deity-images {
   display: none;
