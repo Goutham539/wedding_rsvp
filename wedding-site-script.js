@@ -201,89 +201,50 @@ window.onclick = function(event) {
 // Message Form Handling
 const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
 
-document.getElementById('messageForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const formData = {
-        name: document.getElementById('guestName').value,
-        email: document.getElementById('guestEmail').value,
-        message: document.getElementById('guestMessage').value,
-        timestamp: new Date().toISOString()
-    };
-    
-    const responseDiv = document.getElementById('formResponse');
-    responseDiv.textContent = 'Sending your message...';
-    responseDiv.className = 'form-response';
-    
-    try {
-        const response = await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
+const messageForm = document.getElementById('messageForm');
+if (messageForm) {
+    messageForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
         
-        responseDiv.textContent = '✓ Thank you! Your wishes have been sent successfully!';
-        responseDiv.classList.add('success');
+        const formData = {
+            name: document.getElementById('guestName').value,
+            email: document.getElementById('guestEmail').value,
+            message: document.getElementById('guestMessage').value,
+            timestamp: new Date().toISOString()
+        };
         
-        // Clear form
-        document.getElementById('messageForm').reset();
+        const responseDiv = document.getElementById('formResponse');
+        responseDiv.textContent = 'Sending your message...';
+        responseDiv.className = 'form-response';
         
-        // Reload messages
-        setTimeout(() => {
-            loadMessages();
-            responseDiv.textContent = '';
-        }, 3000);
-        
-    } catch (error) {
-        console.error('Error:', error);
-        responseDiv.textContent = '✗ Oops! Something went wrong. Please try again.';
-        responseDiv.classList.add('error');
-    }
-});
-
-// Load Messages from Google Sheets
-async function loadMessages() {
-    const messagesList = document.getElementById('messagesList');
-    
-    try {
-        const response = await fetch(GOOGLE_SCRIPT_URL + '?action=getMessages');
-        const data = await response.json();
-        
-        if (data.messages && data.messages.length > 0) {
-            messagesList.innerHTML = '';
-            
-            data.messages.reverse().forEach(msg => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'message-item';
-                
-                const replyHTML = msg.reply ? `
-                    <div class="message-reply">
-                        <div class="reply-label">💝 Our Reply:</div>
-                        <div class="reply-text">${msg.reply}</div>
-                    </div>
-                ` : '';
-                
-                messageDiv.innerHTML = `
-                    <div class="message-header">
-                        <span class="message-author">${msg.name}</span>
-                        <span class="message-date">${formatDate(msg.timestamp)}</span>
-                    </div>
-                    <div class="message-text">${msg.message}</div>
-                    ${replyHTML}
-                `;
-                
-                messagesList.appendChild(messageDiv);
+        try {
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
             });
-        } else {
-            messagesList.innerHTML = '<div class="loading">No messages yet. Be the first to leave your wishes!</div>';
+            
+            responseDiv.textContent = '✓ Thank you! Your wishes have been sent successfully!';
+            responseDiv.classList.add('success');
+            
+            // Clear form
+            document.getElementById('messageForm').reset();
+            
+            // Clear response after 3 seconds
+            setTimeout(() => {
+                responseDiv.textContent = '';
+                responseDiv.className = 'form-response';
+            }, 3000);
+            
+        } catch (error) {
+            console.error('Error:', error);
+            responseDiv.textContent = '✗ Oops! Something went wrong. Please try again.';
+            responseDiv.classList.add('error');
         }
-    } catch (error) {
-        console.error('Error loading messages:', error);
-        messagesList.innerHTML = '<div class="loading">Messages will appear here once submitted.</div>';
-    }
+    });
 }
 
 // Format date helper
@@ -292,12 +253,6 @@ function formatDate(dateString) {
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return date.toLocaleDateString('en-US', options);
 }
-
-// Load messages on page load
-window.addEventListener('load', loadMessages);
-
-// Refresh messages every 30 seconds
-setInterval(loadMessages, 30000);
 
 // Add parallax effect to hero section
 window.addEventListener('scroll', () => {
