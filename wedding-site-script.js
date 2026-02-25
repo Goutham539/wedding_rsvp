@@ -199,7 +199,7 @@ window.onclick = function(event) {
 }
 
 // Message Form Handling
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxVNgPx5UKGujslzFW913v9ixD2LWn_pl3iSDRr-77tQNUfeDqRumX8RSu49oYNrx-q/exec';
 
 const messageForm = document.getElementById('messageForm');
 if (messageForm) {
