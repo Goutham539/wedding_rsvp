@@ -118,7 +118,7 @@ const registryData = {
                 <li>Home electronics</li>
             </ul>
             <p style="margin-top: 1.5rem; font-weight: 600;">
-                Registry Link: <a href="#" style="color: var(--primary-color);">View on Amazon/Target</a>
+                <a href="https://www.myregistry.com/wedding-registry/lakshmi-supritha-bhavanasi-and-goutham-nerella-cumberland-rhode-island/5342882/giftlist" target="_blank" style="color: var(--primary-color); text-decoration: underline;">View Our Wedding Registry</a>
             </p>
         `
     },
