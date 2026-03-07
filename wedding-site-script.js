@@ -27,6 +27,62 @@ function createParticles() {
 // Initialize particles on load
 window.addEventListener('load', createParticles);
 
+// Countdown Timer for Wedding
+function initCountdown() {
+    // Wedding date: March 13, 2026 at 9:10 PM
+    const weddingDate = new Date('2026-03-13T21:10:00').getTime();
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        // Calculate time units
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Update DOM elements
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        
+        if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+        
+        // If countdown is finished
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            if (daysEl) daysEl.textContent = '00';
+            if (hoursEl) hoursEl.textContent = '00';
+            if (minutesEl) minutesEl.textContent = '00';
+            if (secondsEl) secondsEl.textContent = '00';
+            
+            // Optional: Show a message when the wedding day arrives
+            const countdownSection = document.querySelector('.countdown-subtitle');
+            if (countdownSection) {
+                countdownSection.textContent = 'The big day is here! 🎉';
+            }
+        }
+    }
+    
+    // Update countdown immediately
+    updateCountdown();
+    
+    // Update countdown every second
+    const countdownInterval = setInterval(updateCountdown, 1000);
+}
+
+// Initialize countdown when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCountdown);
+} else {
+    initCountdown();
+}
+
 // Page Transition Effect for Navigation Links
 document.querySelectorAll('a:not([href^="#"]):not([target="_blank"])').forEach(link => {
     link.addEventListener('click', function(e) {
@@ -136,7 +192,7 @@ const registryData = {
             <p style="margin-top: 1.5rem; font-weight: 600;">
                 Contribution Details:<br>
                 Venmo/PayPal: @yournamehere<br>
-                Or Cash/Check at the wedding
+                Or Cash/Check at the wedding 
             </p>
         `
     },
