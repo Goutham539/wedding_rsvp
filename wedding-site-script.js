@@ -27,6 +27,36 @@ function createParticles() {
 // Initialize particles on load
 window.addEventListener('load', createParticles);
 
+// Check for thank you parameter and show banner
+function checkThankYouParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('thankyou') === 'true') {
+        const thankYouBanner = document.getElementById('thankYouBanner');
+        if (thankYouBanner) {
+            thankYouBanner.style.display = 'block';
+            
+            // Scroll to top to ensure banner is visible
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Auto-hide banner after 10 seconds
+            setTimeout(() => {
+                thankYouBanner.style.display = 'none';
+            }, 10000);
+            
+            // Remove the parameter from URL without reloading
+            const newUrl = window.location.pathname;
+            window.history.replaceState({}, document.title, newUrl);
+        }
+    }
+}
+
+// Initialize thank you check when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', checkThankYouParam);
+} else {
+    checkThankYouParam();
+}
+
 // Countdown Timer for Wedding
 function initCountdown() {
     // Wedding date: March 13, 2026 at 9:10 PM

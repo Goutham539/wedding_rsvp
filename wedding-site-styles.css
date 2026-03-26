@@ -98,13 +98,13 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.3s ease;
 }
 
-/* Venue Update Banner */
-.venue-update-banner {
+/* Thank You Banner (replaces Venue Update Banner) */
+.thank-you-banner {
     position: fixed;
     top: 80px;
     left: 0;
     width: 100%;
-    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    background: linear-gradient(135deg, #d4a574, #8b7355);
     color: white;
     padding: 1rem 2rem;
     z-index: 999;
@@ -131,6 +131,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .banner-icon {
@@ -148,15 +149,20 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
 }
 
-.banner-link {
+.banner-close {
+    background: none;
+    border: none;
     color: white;
-    text-decoration: underline;
-    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    opacity: 0.8;
     transition: opacity 0.3s ease;
 }
 
-.banner-link:hover {
-    opacity: 0.8;
+.banner-close:hover {
+    opacity: 1;
 }
 
 .nav-container {
@@ -456,6 +462,93 @@ section {
 .page-subtitle {
     font-size: 1.5rem;
     font-weight: 300;
+}
+
+/* Thank You Section (replaces Countdown Timer) */
+.thank-you-section {
+    background: linear-gradient(135deg, #faf8f5 0%, #f4e4d7 100%);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.thank-you-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(139, 115, 85, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.thank-you-title {
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.thank-you-subtitle {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.thank-you-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.thank-you-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thank-you-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+.thank-you-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.thank-you-card h3 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.thank-you-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+.thank-you-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
 }
 
 /* Countdown Timer Section */
@@ -1121,6 +1214,14 @@ section {
     font-weight: 600;
 }
 
+.photo-image {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    background: #f8f9fa;
+    display: block;
+}
+
 .photo-caption {
     padding: 1rem;
     text-align: center;
@@ -1543,6 +1644,30 @@ section {
 
     .countdown-date {
         font-size: 1rem;
+    }
+
+    .thank-you-title {
+        font-size: 2rem;
+    }
+
+    .thank-you-subtitle {
+        font-size: 1rem;
+    }
+
+    .thank-you-content {
+        grid-template-columns: 1fr;
+    }
+
+    .thank-you-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .thank-you-cta {
+        flex-direction: column;
+    }
+
+    .banner-text {
+        font-size: 0.9rem;
     }
 }
 

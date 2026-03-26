@@ -245,6 +245,11 @@ function initializeFormSubmission() {
       // Reset form
       form.reset();
       
+      // Redirect to home page with thank you message after a brief delay
+      setTimeout(() => {
+        window.location.href = 'index.html?thankyou=true';
+      }, 2000);
+      
       // Email backup removed - data only goes to Google Sheets
       
     } catch (error) {
